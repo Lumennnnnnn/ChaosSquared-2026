@@ -1,0 +1,155 @@
+package org.firstinspires.ftc.teamcode.TeleOp;
+
+import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.flyVel;
+import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.resetPose;
+
+import android.annotation.SuppressLint;
+
+import com.bylazar.configurables.annotations.IgnoreConfigurable;
+import com.bylazar.telemetry.PanelsTelemetry;
+import com.bylazar.telemetry.TelemetryManager;
+import com.pedropathing.follower.Follower;
+import com.pedropathing.geometry.BezierLine;
+import com.pedropathing.geometry.Pose;
+import com.pedropathing.paths.PathChain;
+import com.pedropathing.util.PoseHistory;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
+import org.firstinspires.ftc.teamcode.Libs.Robot3;
+import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
+import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
+
+import java.util.List;
+
+@TeleOp(name = "DriveVroomVroom", group = "TeleOp")
+public class DriveVroomVroom extends OpMode {
+
+    private Follower follower;
+
+    @IgnoreConfigurable
+    static PoseHistory poseHistory;
+
+    @IgnoreConfigurable
+    static TelemetryManager telemetryM;
+
+    private final TelemetryManager panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
+
+    Robot3 robot = new Robot3(ConstantChaos.isRed);
+
+    public double desiredFlywheelVelocity = 0.0;
+
+    private PathChain goToShoot;
+    private PathChain turnToShoot;
+    private PathChain Park;
+
+    public Pose Starting = new Pose(72, 8, Math.toRadians(90));
+
+    @Override
+    public void init() {
+        robot.init(hardwareMap);
+        follower = Constants.createFollower(hardwareMap);//new follower creator
+        follower.setMaxPower(1.0);
+        telemetry.addData("heading", robot.getLastPose().getHeading());
+        follower.setStartingPose(Starting);
+        telemetry.addData("Current Pose", follower.getPose());
+        telemetry.update();
+        panelsTelemetry.update(telemetry);
+    }
+
+    @Override
+    public void start() {
+        follower.startTeleopDrive();
+    }
+
+    @SuppressLint("DefaultLocale")
+    @Override
+    public void loop() {
+        follower.update(); //MUST COME BEFORE SET TELE OP DRIVE
+        //Okay, if something is reversed in the driving, try swapping the polarity here
+        if (ConstantChaos.isRed) {
+            follower.setTeleOpDrive(-gamepad1.left_stick_y/2, -gamepad1.left_stick_x/2, -gamepad1.right_stick_x/2, false);
+        } else {
+            follower.setTeleOpDrive(gamepad1.left_stick_y/2, gamepad1.left_stick_x/2, -gamepad1.right_stick_x/2, false);
+        }
+        follower.updateDrivetrain();
+        //Driving------------------
+
+        if (gamepad1.left_stick_button || gamepad1.right_stick_button) { //For when we code auto points in Teleop
+            follower.startTeleopDrive();
+        }
+
+        if (gamepad1.left_trigger > 0.01){ //Quarter speed
+            if (ConstantChaos.isRed) {
+                follower.setTeleOpDrive(-gamepad1.left_stick_y/4, -gamepad1.left_stick_x/4, -gamepad1.right_stick_x/4, false);
+            } else {
+                follower.setTeleOpDrive(gamepad1.left_stick_y/4, gamepad1.left_stick_x/4, -gamepad1.right_stick_x/4, false);
+            }
+            follower.update();
+        }
+
+        if (gamepad1.right_trigger > 0.01){ //Full speed
+            if (ConstantChaos.isRed) {
+                follower.setTeleOpDrive(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x, false);
+            } else {
+                follower.setTeleOpDrive(gamepad1.left_stick_y, gamepad1.left_stick_x, -gamepad1.right_stick_x, false);
+            }
+            follower.update();
+        }
+        //Driving----------------
+
+        //Auto points
+        if(gamepad1.aWasReleased()){
+            Paths(follower);
+            follower.followPath(turnToShoot);
+        }
+        if (gamepad1.bWasReleased()){
+            follower.holdPoint(follower.getPose());
+        }
+        if (gamepad1.rightBumperWasReleased()){
+            Paths(follower);
+            follower.followPath(goToShoot);
+        }
+        if (gamepad1.yWasReleased()){
+            Paths(follower);
+            follower.followPath(Park);
+        }
+
+        //Reset point
+        if (gamepad1.backWasReleased()){
+            follower.setPose(resetPose);
+        }
+
+
+        panelsTelemetry.update(telemetry);
+
+        robot.draw(follower);
+
+    }
+    @Override
+    public void stop() {
+        telemetry.addLine("Stopped");
+        telemetry.update();
+    }
+
+    public void Paths(Follower follower) {
+        goToShoot = follower
+                .pathBuilder()
+                .addPath(
+                        new BezierLine(follower.getPose(), robot.Fire1)
+                )
+                .setLinearHeadingInterpolation(follower.getHeading(), robot.Fire1.getHeading())
+                .build();
+        turnToShoot = follower
+                .pathBuilder()
+                .addPath(new BezierLine(follower.getPose(), robot.getTurn(follower.getPose())))
+                .setLinearHeadingInterpolation(follower.getHeading(), robot.calcHeadingToGoal(follower.getPose()))
+                .build();
+        Park = follower
+                .pathBuilder()
+                .addPath(new BezierLine(follower.getPose(), robot.Park))
+                .setLinearHeadingInterpolation(follower.getHeading(), robot.Park.getHeading())
+                .build();
+    }
+}
