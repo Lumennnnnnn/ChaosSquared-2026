@@ -44,7 +44,7 @@ public class DriveVroomVroom extends OpMode {
     private PathChain turnToShoot;
     private PathChain Park;
 
-    public Pose Starting = new Pose(72, 8, Math.toRadians(90));
+    public Pose Starting = new Pose(72, 8, Math.toRadians(0));
 
     @Override
     public void init() {
