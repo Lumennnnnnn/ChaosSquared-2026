@@ -34,8 +34,6 @@ public class DriveVroomVroom extends OpMode {
     @IgnoreConfigurable
     static TelemetryManager telemetryM;
 
-    private final TelemetryManager panelsTelemetry = PanelsTelemetry.INSTANCE.getTelemetry();
-
     Robot3 robot = new Robot3(ConstantChaos.isRed);
 
     public double desiredFlywheelVelocity = 0.0;
@@ -55,7 +53,6 @@ public class DriveVroomVroom extends OpMode {
         follower.setStartingPose(Starting);
         telemetry.addData("Current Pose", follower.getPose());
         telemetry.update();
-        panelsTelemetry.update(telemetry);
     }
 
     @Override
@@ -121,8 +118,11 @@ public class DriveVroomVroom extends OpMode {
             follower.setPose(resetPose);
         }
 
-
-        panelsTelemetry.update(telemetry);
+        telemetry.addData("Gamepad 1 right stick", gamepad1.right_stick_x);
+        telemetry.addData("Gamepad 1 b", gamepad1.b);
+        telemetry.addData("difference of left and right sticks on gamepad 1", (gamepad1.left_stick_y-gamepad1.right_stick_y));
+        telemetry.addData("sum of right and left triggers on gamepad 1", gamepad1.right_trigger+gamepad1.left_trigger);
+        telemetry.update();
 
         robot.draw(follower);
 
