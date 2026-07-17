@@ -20,6 +20,11 @@ String myName = "Muna";
 
     @Override
     public void loop() {
+        telemetry.addData("right stick", gamepad1.right_stick_x);
+        telemetry.addData("b",gamepad1.b);
+        telemetry.addData("left - right stick", gamepad1.left_stick_y-gamepad1.right_stick_y);
+        telemetry.addData("left + right trigger",gamepad1.left_trigger+gamepad1.right_trigger);
+        telemetry.update();
 
     }
 }
