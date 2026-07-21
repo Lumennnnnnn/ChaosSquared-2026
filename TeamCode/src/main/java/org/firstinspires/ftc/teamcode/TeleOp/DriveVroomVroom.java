@@ -97,25 +97,19 @@ public class DriveVroomVroom extends OpMode {
         //Driving----------------
 
         //Auto points
-        if(gamepad1.aWasReleased()){
-            Paths(follower);
-            follower.followPath(turnToShoot);
-        }
-        if (gamepad1.bWasReleased()){
-            follower.holdPoint(follower.getPose());
-        }
-        if (gamepad1.rightBumperWasReleased()){
-            Paths(follower);
-            follower.followPath(goToShoot);
-        }
-        if (gamepad1.yWasReleased()){
-            Paths(follower);
-            follower.followPath(Park);
-        }
 
         //Reset point
         if (gamepad1.backWasReleased()){
             follower.setPose(resetPose);
+        }
+
+        //Gamepad 2 stuff-currently on gamepad 1
+        if(gamepad1.left_bumper) { //intake-check to see which one is intake vs outtake
+            robot.intake(1.0);
+        }else if(gamepad1.right_bumper){
+            robot.intake(-1.0);
+        }else{
+            robot.intake(0.0);
         }
 
         telemetry.addData("Gamepad 1 right stick", gamepad1.right_stick_x);
@@ -131,25 +125,5 @@ public class DriveVroomVroom extends OpMode {
     public void stop() {
         telemetry.addLine("Stopped");
         telemetry.update();
-    }
-
-    public void Paths(Follower follower) {
-        goToShoot = follower
-                .pathBuilder()
-                .addPath(
-                        new BezierLine(follower.getPose(), robot.Fire1)
-                )
-                .setLinearHeadingInterpolation(follower.getHeading(), robot.Fire1.getHeading())
-                .build();
-        turnToShoot = follower
-                .pathBuilder()
-                .addPath(new BezierLine(follower.getPose(), robot.getTurn(follower.getPose())))
-                .setLinearHeadingInterpolation(follower.getHeading(), robot.calcHeadingToGoal(follower.getPose()))
-                .build();
-        Park = follower
-                .pathBuilder()
-                .addPath(new BezierLine(follower.getPose(), robot.Park))
-                .setLinearHeadingInterpolation(follower.getHeading(), robot.Park.getHeading())
-                .build();
     }
 }
