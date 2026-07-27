@@ -312,7 +312,6 @@ public class Robot3 {
         FrontLeftMotor.setPower(desiredFrontLeft);
         BackRightMotor.setPower(desiredBackRight);
         BackLeftMotor.setPower(desiredBackLeft);
-//        Flywheel.setPower(desiredFlywheel);
     }
 
     public double calcHeadingToGoal(Pose currentPosition) { //calculates the theta to the goal

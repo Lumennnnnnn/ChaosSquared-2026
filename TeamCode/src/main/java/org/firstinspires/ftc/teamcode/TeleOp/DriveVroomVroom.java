@@ -1,17 +1,13 @@
 package org.firstinspires.ftc.teamcode.TeleOp;
 
-import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.flyVel;
 import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.resetPose;
 
 import android.annotation.SuppressLint;
 
 import com.bylazar.configurables.annotations.IgnoreConfigurable;
-import com.bylazar.telemetry.PanelsTelemetry;
 import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
-import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
-import com.pedropathing.paths.PathChain;
 import com.pedropathing.util.PoseHistory;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -19,9 +15,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
-import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
-
-import java.util.List;
 
 @TeleOp(name = "DriveVroomVroom", group = "TeleOp")
 public class DriveVroomVroom extends OpMode {
@@ -35,12 +28,6 @@ public class DriveVroomVroom extends OpMode {
     static TelemetryManager telemetryM;
 
     Robot3 robot = new Robot3(ConstantChaos.isRed);
-
-    public double desiredFlywheelVelocity = 0.0;
-
-    private PathChain goToShoot;
-    private PathChain turnToShoot;
-    private PathChain Park;
 
     public Pose Starting = new Pose(72, 8, Math.toRadians(0));
 
