@@ -142,6 +142,8 @@ public class Robot3 {
         FlywheelMotor.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER, pidfCoefficients);
         FeederR.setDirection(CRServo.Direction.FORWARD);
         FeederL.setDirection(CRServo.Direction.REVERSE);
+        BackRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        FrontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         initAprilTag(hardwareMap);
 //        visionPortal = VisionPortal.easyCreateWithDefaults(hardwareMap.get(WebcamName.class, "Webcam 1"), AprilTag);
         rightLEDRed = hardwareMap.get(LED.class, "rightLEDRed");
