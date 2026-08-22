@@ -2,11 +2,17 @@ package org.firstinspires.ftc.teamcode.Tests;
 
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 public class RobotLocation {
+    TouchSensor touchSensor;
     double angle;
     double x;
     double y;
+
+    public void init (HardwareMap hardwareMap){
+        touchSensor = hardwareMap.get(TouchSensor.class, "touch_sensor");
+    }
 
     public RobotLocation(double angle){
         this.angle = angle;
