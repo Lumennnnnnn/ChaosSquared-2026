@@ -6,10 +6,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp
 public class UseRobotLocationOpMode extends OpMode {
     RobotLocation robotLocation = new RobotLocation(0);
+    String isTouchPressed = "";
 
     @Override
     public void init(){
         robotLocation.setAngle(0);
+        robotLocation.init(hardwareMap);
     }
 
     @Override
@@ -28,6 +30,12 @@ public class UseRobotLocationOpMode extends OpMode {
         } else if (gamepad1.dpad_down){
             robotLocation.changeY(-0.1);
         }
+        if(robotLocation.isTouchSensorPressed()){
+            isTouchPressed = "Pressed";
+        } else {
+            isTouchPressed = "Not Pressed";
+        }
+        telemetry.addData("Touch Sensor state", isTouchPressed);
         telemetry.addData("X", robotLocation.getX());
         telemetry.addData("Y", robotLocation.getY());
         telemetry.addData("Location", robotLocation);

@@ -1,9 +1,26 @@
 package org.firstinspires.ftc.teamcode.Tests;
 
+import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
 public class RobotLocation {
+    private DigitalChannel touchSensor;
     double angle;
     double x;
     double y;
+
+    public void init (HardwareMap hardwareMap){
+        touchSensor = hardwareMap.get(DigitalChannel.class, "touch_sensor");
+        touchSensor.setMode(DigitalChannel.Mode.INPUT);
+    }
+
+    public boolean isTouchSensorReleased() {
+        return touchSensor.getState();
+    }
+
+    public boolean isTouchSensorPressed() {
+        return !touchSensor.getState();
+    }
 
     public RobotLocation(double angle){
         this.angle = angle;
