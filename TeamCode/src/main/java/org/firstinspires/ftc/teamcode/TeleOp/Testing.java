@@ -32,9 +32,9 @@ public class Testing extends OpMode {
     @Override
     public void loop() {
         //Driving----------------
-        double y = -gamepad1.left_stick_y;   // Forward/back
-        double x = gamepad1.left_stick_x;    // Strafe
-        double rx = gamepad1.right_stick_x;  // Turn
+        double y = gamepad1.left_stick_y/2;   // Forward/back
+        double x = -gamepad1.left_stick_x/2;    // Strafe
+        double rx = -gamepad1.right_stick_x/2;  // Turn
 
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1); //Math
 
@@ -52,10 +52,8 @@ public class Testing extends OpMode {
         //Driving----------------
 
         //Gamepad 2 stuff-currently on gamepad 1
-        if(gamepad1.left_bumper) { //intake-check to see which one is intake vs outtake
-            robot.intake(1.0);
-        }else if(gamepad1.right_bumper){
-            robot.intake(-1.0);
+        if(gamepad1.right_bumper){//intake
+            robot.intake(-0.5);
         }else{
             robot.intake(0.0);
         }
