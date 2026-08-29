@@ -250,6 +250,14 @@ public class Robot3 {
         this.desiredFrontRight = desiredFrontRight;
     }
 
+    public double squareInputWithSign(double input){
+        double output = input * input;
+        if(output < 0){
+            output = output * -1;
+        }
+        return output;
+    }
+
     public void spinFlywheel(double power) {//this really spins based on velocity, not power...
         FlywheelMotor.setVelocity(power);
         isFlywheelOn = true;

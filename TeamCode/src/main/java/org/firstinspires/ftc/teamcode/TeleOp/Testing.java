@@ -36,6 +36,8 @@ public class Testing extends OpMode {
         double x = -gamepad1.left_stick_x/2;    // Strafe
         double rx = -gamepad1.right_stick_x/2;  // Turn
 
+
+
         double denominator = Math.max(Math.abs(y) + Math.abs(x) + Math.abs(rx), 1); //Math
 
         double frontLeftPower = (y + x + rx) / denominator;
@@ -48,6 +50,12 @@ public class Testing extends OpMode {
         robot.setDesiredFrontRight(frontRightPower);
         robot.setDesiredBackLeft(backLeftPower);
         robot.setDesiredBackRight(backRightPower);
+        if (gamepad1.left_trigger > 0.01) {
+            robot.setDesiredFrontLeft(robot.squareInputWithSign(frontLeftPower));
+            robot.setDesiredFrontRight(robot.squareInputWithSign(frontRightPower));
+            robot.setDesiredBackLeft(robot.squareInputWithSign(backLeftPower));
+            robot.setDesiredBackRight(robot.squareInputWithSign(backRightPower));
+        }
         robot.actMotors();
         //Driving----------------
 

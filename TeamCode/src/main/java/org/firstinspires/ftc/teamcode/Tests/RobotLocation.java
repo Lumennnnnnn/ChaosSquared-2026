@@ -1,63 +1,30 @@
 package org.firstinspires.ftc.teamcode.Tests;
 
-import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 public class RobotLocation {
     TouchSensor touchSensor;
-    double angle;
-    double x;
-    double y;
+    private DcMotor motor;
 
-    public void init (HardwareMap hardwareMap){
-        touchSensor = hardwareMap.get(TouchSensor.class, "touch_sensor");
+    public void init(HardwareMap hardwareMap) {
+//        touchSensor = hardwareMap.get(TouchSensor.class, "touch_sensor");
+        motor = hardwareMap.dcMotor.get("frontLeft");
+        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
-    public RobotLocation(double angle){
-        this.angle = angle;
+    public void setMotorSpeed(double x) {
+        this.motor.setPower(x);
     }
-
-    public double getHeading(){
-        double angle = this.angle;
-        while(angle > 180){
-            angle -= 360;
+    public double squareInputWithSign(double input){
+        double output = input * input;
+        if(output < 0){
+            output = output * -1;
         }
-        return angle;
+        return output;
     }
-
-    public double getX(){
-        return this.x;
-    }
-
-    public void changeX(double change){
-        x += change;
-    }
-
-    public void setX(double x){
-        this.x = x;
-    }
-
-    public void changeY(double change){
-        y += change;
-    }
-
-    public void setY(double y){
-        this.y = y;
-    }
-    public double getY(){
-        return this.y;
-    }
-
-    @Override
-    public String toString(){
-        return "RobotLocation: angle (" + angle + ")";
-    }
-
-    public void turn(double angleChange){
-        angle += angleChange;
-    }
-    public void setAngle(double angle){
-        this.angle = angle;
+    public void setZeroPowerBehavor(DcMotor.ZeroPowerBehavior zpb) {
+        motor.setZeroPowerBehavior(zpb);
     }
 }

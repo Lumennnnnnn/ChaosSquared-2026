@@ -2,44 +2,38 @@ package org.firstinspires.ftc.teamcode.Tests;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp
 public class UseRobotLocationOpMode extends OpMode {
-    RobotLocation robotLocation = new RobotLocation(0);
+    RobotLocation robotLocation = new RobotLocation();
     String isTouchPressed = "";
+    String motorState = "";
+    double leftX = 0.0;
 
     @Override
     public void init(){
-        robotLocation.setAngle(0);
         robotLocation.init(hardwareMap);
     }
 
     @Override
     public void loop() {
         if(gamepad1.a){
-            robotLocation.turn(0.1);
-        } else if (gamepad1.b){
-            robotLocation.turn(-0.1);
+            motorState = "Brake";
+            robotLocation.setZeroPowerBehavor(DcMotor.ZeroPowerBehavior.BRAKE);
         }
-        if(gamepad1.dpad_right){
-            robotLocation.changeX(0.1);
-        } else if (gamepad1.dpad_left){
-            robotLocation.changeX(-0.1);
-        } else if (gamepad1.dpad_up){
-            robotLocation.changeY(0.1);
-        } else if (gamepad1.dpad_down){
-            robotLocation.changeY(-0.1);
+        if(gamepad1.b){
+            motorState = "Float";
+            robotLocation.setZeroPowerBehavor(DcMotor.ZeroPowerBehavior.FLOAT);
         }
-        if(robotLocation.touchSensor.isPressed()){
-            isTouchPressed = "Pressed";
-        } else {
-            isTouchPressed = "Not Pressed";
-        }
-        telemetry.addData("Touch Sensor State", isTouchPressed);
-        telemetry.addData("X", robotLocation.getX());
-        telemetry.addData("Y", robotLocation.getY());
-        telemetry.addData("Location", robotLocation);
-        telemetry.addData("Heading", robotLocation.getHeading());
+        robotLocation.setMotorSpeed(robotLocation.squareInputWithSign(gamepad1.left_stick_x));
+//        if(robotLocation.touchSensor.isPressed()){
+//            isTouchPressed = "Pressed";
+//        } else {
+//            isTouchPressed = "Not Pressed";
+//        }
+        telemetry.addData("Motor State", motorState);
+//        telemetry.addData("Touch Sensor State", isTouchPressed);
         telemetry.update();
     }
 }
