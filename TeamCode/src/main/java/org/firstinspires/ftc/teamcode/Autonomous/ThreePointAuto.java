@@ -1,16 +1,18 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+/*package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.PathChain;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
+@Disabled
 @Autonomous(group = "Autos", name = "ThreePointAuto")
 public class ThreePointAuto extends LinearOpMode {
     Robot3 robot = new Robot3(ConstantChaos.Alliance.RED);
@@ -39,3 +41,4 @@ public class ThreePointAuto extends LinearOpMode {
         robot.setLastPose(follower.getPose());
     }
 }
+*/

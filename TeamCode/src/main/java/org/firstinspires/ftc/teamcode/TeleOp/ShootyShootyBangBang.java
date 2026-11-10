@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+/*package org.firstinspires.ftc.teamcode.TeleOp;
 
 import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.flyVel;
 import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.resetPose;
@@ -19,12 +19,14 @@ import org.firstinspires.ftc.vision.apriltag.AprilTagMetadata;
 import com.pedropathing.geometry.BezierLine;
 import com.pedropathing.paths.PathChain;
 import com.pedropathing.util.PoseHistory;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Disabled
 @TeleOp(name = "ShootyShootyBangBang", group = "TeleOp")
 public class ShootyShootyBangBang extends OpMode {
 
@@ -211,4 +213,4 @@ public class ShootyShootyBangBang extends OpMode {
                 .setLinearHeadingInterpolation(follower.getHeading(), robot.Park.getHeading())
                 .build();
     }
-}
+}*/

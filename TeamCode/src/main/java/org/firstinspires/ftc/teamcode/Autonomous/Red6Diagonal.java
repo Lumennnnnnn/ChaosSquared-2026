@@ -1,10 +1,12 @@
-package org.firstinspires.ftc.teamcode.Autonomous;
+/*package org.firstinspires.ftc.teamcode.Autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 
+@Disabled
 @Autonomous(name = "Red6Diagonal", group = "Tests")
 public class Red6Diagonal extends Diagonal6 {
     public Red6Diagonal(){
@@ -17,4 +19,4 @@ public class Red6Diagonal extends Diagonal6 {
         super.PickUpThree = ConstantChaos.RedPickUpThree;
         super.EndingPose = ConstantChaos.RedEndingPoseDiagonal;
     }
-}
+}*/

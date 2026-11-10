@@ -11,7 +11,7 @@ import java.util.List;
 
 @TeleOp(name = "TestingRobot3", group = "Tests")
 public class UseAprilTagThing extends OpMode {
-    Robot3 robot = new Robot3(ConstantChaos.Alliance.RED);
+    Robot3 robot = new Robot3();
     @Override
     public void init() {
         robot.init(hardwareMap);

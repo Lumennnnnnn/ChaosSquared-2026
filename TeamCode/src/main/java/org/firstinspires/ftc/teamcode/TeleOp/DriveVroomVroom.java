@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+/*package org.firstinspires.ftc.teamcode.TeleOp;
 
 import static org.firstinspires.ftc.teamcode.Libs.ConstantChaos.resetPose;
 
@@ -9,6 +9,7 @@ import com.bylazar.telemetry.TelemetryManager;
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
 import com.pedropathing.util.PoseHistory;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
+@Disabled
 @TeleOp(name = "DriveVroomVroom", group = "TeleOp")
 public class DriveVroomVroom extends OpMode {
 
@@ -113,4 +115,4 @@ public class DriveVroomVroom extends OpMode {
         telemetry.addLine("Stopped");
         telemetry.update();
     }
-}
+}*/

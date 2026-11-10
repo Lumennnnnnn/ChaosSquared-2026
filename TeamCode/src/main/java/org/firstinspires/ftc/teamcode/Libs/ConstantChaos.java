@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.Libs;
 
 
 import com.bylazar.configurables.annotations.Configurable;
-import com.pedropathing.geometry.Pose;
+//import com.pedropathing.geometry.Pose;
 
 @Configurable
 public class ConstantChaos {
@@ -19,6 +19,7 @@ public class ConstantChaos {
 
     public static double flyVel = 2000;//short for flywheel velocity
 
+    /* hiding poses
     //reset Pose
     public static final Pose resetPose = new Pose(72, 9, Math.toRadians(90));
 
@@ -55,4 +56,6 @@ public class ConstantChaos {
     public static final Pose BlueGoalArea = new Pose(8, 139);
     public static final Pose BlueParkArea = new Pose(105,33);
     public static final Pose Blue1Fire = new Pose(50, 93, Math.toRadians(225));
+
+     */
 }

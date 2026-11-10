@@ -1,8 +1,10 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+/*package org.firstinspires.ftc.teamcode.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+@Disabled
 @TeleOp( name = "MunaOpMode", group="TeleOp")
 public class Muna extends OpMode {
 String myName = "Muna";
@@ -29,3 +31,4 @@ String myName = "Muna";
     }
 }
 
+*/

@@ -10,18 +10,17 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 
-@TeleOp(name = "Testing", group = "TeleOp")
+@TeleOp(name = "UseThisOne", group = "TeleOp")
 public class Testing extends OpMode {
 
     @IgnoreConfigurable
     static TelemetryManager telemetryM;
 
-    Robot3 robot = new Robot3(ConstantChaos.isRed);
+    Robot3 robot = new Robot3();
 
     @Override
     public void init() {
         robot.init(hardwareMap);
-        telemetry.addData("heading", robot.getLastPose().getHeading());
         telemetry.update();
     }
 

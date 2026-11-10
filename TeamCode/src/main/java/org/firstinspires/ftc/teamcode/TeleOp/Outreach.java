@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+/*package org.firstinspires.ftc.teamcode.TeleOp;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.geometry.Pose;
 import com.pedropathing.paths.PathChain;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Libs.ConstantChaos;
 import org.firstinspires.ftc.teamcode.Libs.Robot3;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
+@Disabled
 @TeleOp(name = "Outreach", group = "TeleOp")
 public class Outreach extends OpMode {
 
@@ -98,13 +100,13 @@ public class Outreach extends OpMode {
             }
         }
 
-        /* Telemetry Outputs of our Follower */
+        // Telemetry Outputs of our Follower
         telemetry.addData("X", follower.getPose().getX());
         telemetry.addData("Y", follower.getPose().getY());
         telemetry.addData("Heading in Degrees", Math.toDegrees(follower.getPose().getHeading()));
         telemetry.addData("flyVel", flyVel);
 
-        /* Update Telemetry to the Driver Hub */
+        // Update Telemetry to the Driver Hub
         telemetry.update();
     }
     @Override
@@ -112,4 +114,4 @@ public class Outreach extends OpMode {
         telemetry.addLine("Stopped");
         telemetry.update();
     }
-}
+}*/

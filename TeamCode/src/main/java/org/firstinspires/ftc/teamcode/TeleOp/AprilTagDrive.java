@@ -1,8 +1,9 @@
-package org.firstinspires.ftc.teamcode.TeleOp;
+/*package org.firstinspires.ftc.teamcode.TeleOp;
 
 import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
 
 import com.pedropathing.follower.Follower;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -12,7 +13,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 
 import java.util.List;
-
+@Disabled
 @TeleOp(name = "AprilTagDrive", group = "Teleop")
 public class AprilTagDrive extends OpMode {
     private Follower follower;
@@ -50,3 +51,4 @@ public class AprilTagDrive extends OpMode {
         }
     }
 }
+*/
